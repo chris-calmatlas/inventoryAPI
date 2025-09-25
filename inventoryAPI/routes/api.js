@@ -1,9 +1,15 @@
 const express = require('express');
 const apiRouter = express.Router();
 
-const thingsRouter = require('./api/things');
+// load routes
+const thingsRouter = require('./things');
 
-// Mount routers
+// Simple homepage for /api
+apiRouter.all('/', (req, res) => {
+  return res.status(200).json({ message: "Inventory API is running" });
+});
+
+// mount routers
 apiRouter.use('/things', thingsRouter);
 
 module.exports = apiRouter;
